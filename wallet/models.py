@@ -49,7 +49,7 @@ class Card(models.Model):
     )
     card=models.CharField(max_length=6,choices=card_type_choices,null=True)
     card_security_code=models.CharField(max_length=6)
-    issuer=models.CharField(max_length=32)
+    issuer=models.CharField(max_length=33)
     walletb=models.ForeignKey(on_delete=models.CASCADE,to=Walletb)
 
 
