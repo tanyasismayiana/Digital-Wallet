@@ -76,7 +76,7 @@ class Receipt(models.Model):
     receipt_file=models.FileField()  
     transaction=models.ForeignKey(on_delete=models.CASCADE,to=Transaction)
 class Loan(models.Model):
-    amount=models.IntegerField()
+    loan_amount=models.BigIntegerField()
     loan_typ=(
         ('Faulu','Mshwari'),
         ('Tala','fuliza')
