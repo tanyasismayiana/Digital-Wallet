@@ -31,16 +31,16 @@ class WalletbAdmin(admin.ModelAdmin):
      search_fields=(Customer,'wallet-id')
 admin.site.register(Walletb,WalletbAdmin)
 class TransactionAdmin(admin.ModelAdmin):
-     list_display=(Walletb,Account,'transaction_code')
-     search_fields=(Walletb,Account,'transaction_code')
+     list_display=("transaction_charge","transaction_code")
+     search_fields=("transaction_charge",'transaction_code')
 admin.site.register(Transaction,TransactionAdmin)
 class CardAdmin(admin.ModelAdmin):
      list_display=('card_number',Walletb)
      search_fields=('card_number',Walletb)
 admin.site.register(Card,CardAdmin)
 class ThirdpartyAdmin(admin.ModelAdmin):
-     list_display=(Account,'date_of_issue')
-     search_fields=(Account,'ldate_of_issue')
+     list_display=('walletb','date_of_issue')
+     search_fields=('walletb','date_of_issue')
 admin.site.register(ThirdParty,ThirdpartyAdmin)
 class NotificationAdmin(admin.ModelAdmin):
      list_display=('title','status',Customer)

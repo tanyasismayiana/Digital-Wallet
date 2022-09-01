@@ -5,7 +5,7 @@ from django.db import models
 class Customer(models.Model):
     first_name= models.CharField(max_length=20)
     last_name= models.CharField(max_length=20)
-    Address=models.TextField()
+    address=models.TextField()
     email= models.EmailField()
     phone_number=models.IntegerField()
     gender= models.CharField(max_length=10)
@@ -13,7 +13,7 @@ class Customer(models.Model):
     profile_picture=models.ImageField(null=True,blank=True,upload_to="images/")
     age= models.PositiveBigIntegerField()
     def __str__(self):
-         return self.first_name
+         return str(self.first_name)
 
 class Account(models.Model):
     account_number= models.PositiveIntegerField()
@@ -21,25 +21,30 @@ class Account(models.Model):
     balance=models.IntegerField()
     pin=models.PositiveSmallIntegerField()
     def __str__(self):
-            return self.customer
+            return str(self.customer)
              
 
 class Walletb(models.Model):
     customer=models.OneToOneField(null=True,on_delete=models.CASCADE,to=Customer)
+    balance=
     currency_supported=models.CharField(max_length=27)
     wallet_id=models.IntegerField(null=True)
+    
+   
 
 class Transaction(models.Model):
     walletb=models.ForeignKey(null=True,on_delete=models.CASCADE,to=Walletb)
-    originaccount=models.ForeignKey(null=True,on_delete=models.CASCADE,to=Account,related_name="account_w")
-    destinationaccount=models.ForeignKey(null=True,on_delete=models.CASCADE,to=Account,related_name="account_x")
+    origin_account=models.ForeignKey(null=True,on_delete=models.CASCADE,to=Account,related_name="account_w")
+    destination_account=models.ForeignKey(null=True,on_delete=models.CASCADE,to=Account,related_name="account_x")
     transaction_code=models.CharField(max_length=14)
     transaction_charge=models.IntegerField()
     transaction_amount=models.IntegerField()
     transaction_date=models.DateTimeField(default=datetime.now)
+    def __str__(self):
+        return self.walletb
+
 class Card(models.Model):
     card_number=models.IntegerField()
-    # card_holder_name=models.CharField(max_length=23)
     expiry_date=models.DateTimeField(default=datetime.now)
     card_type_choices=(
         ('D','debit'),
