@@ -8,7 +8,11 @@ class Customer(models.Model):
     address=models.TextField()
     email= models.EmailField()
     phone_number=models.IntegerField()
-    gender= models.CharField(max_length=10)
+    choice_g=(
+        ("M","Male"),
+        ("F","Female")
+    )
+    gender= models.CharField(max_length=10,choices=choice_g)
     nationality=models.CharField(null=True,max_length=24)
     profile_picture=models.ImageField(null=True,blank=True,upload_to="images/")
     age= models.PositiveBigIntegerField()
@@ -26,9 +30,27 @@ class Account(models.Model):
 
 class Walletb(models.Model):
     customer=models.OneToOneField(null=True,on_delete=models.CASCADE,to=Customer)
-    balance=
     currency_supported=models.CharField(max_length=27)
     wallet_id=models.IntegerField(null=True)
+
+
+# class Currency(models.Model):
+#     my_currency=(
+#         ("Ugandan","U"),
+#         ("Rwanda","R"),
+#         ("Kenya","K"),
+#         ("Tanzania","T"),
+#         ("Somalia","S"),
+
+
+
+
+
+#     )
+#     country=models.CharField(max_length=8,choices=my_currency)
+#     symbol=models.CharField(max_length=9)
+#     # amount=models.
+
     
    
 
@@ -41,7 +63,7 @@ class Transaction(models.Model):
     transaction_amount=models.IntegerField()
     transaction_date=models.DateTimeField(default=datetime.now)
     def __str__(self):
-        return self.walletb
+        return str(self.walletb)
 
 class Card(models.Model):
     card_number=models.IntegerField()
@@ -80,6 +102,9 @@ class Receipt(models.Model):
     receipt_number=models.CharField(max_length=6)
     receipt_file=models.FileField()  
     transaction=models.ForeignKey(on_delete=models.CASCADE,to=Transaction)
+    def  __str__(self):
+        return self.transaction
+
 class Loan(models.Model):
     loan_amount=models.BigIntegerField()
     loan_typ=(
