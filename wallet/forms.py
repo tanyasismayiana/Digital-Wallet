@@ -1,7 +1,5 @@
 #import libr
 from dataclasses import fields
-from email.headerregistry import Address
-from pyexpat import model
 from django import forms
 
 #.current directory
@@ -9,9 +7,9 @@ from .models import Card, Customer, Loan, Notifcation, Receipt, Reward, ThirdPar
 from .models import Account
 
 class CustomerRegisterationForm(forms.ModelForm):
-    class Meta:   #inherits from the parent and overrides
+    class Meta:   
         model=Customer
-        fields=("first_name","last_name","address","email","phone_number","nationality","gender","profile_picture")
+        fields=("first_name","last_name","address","email","phone_number","nationality","gender","age","profile_picture")
         widgets={
              "first_name":forms.TextInput(attrs={ 'class': "form-control"}),
              "last_name": forms.TextInput(attrs={ 'class': "form-control"}),
@@ -74,6 +72,7 @@ class CardRegistrationForm(forms.ModelForm):
     class Meta:
         model=Card
         fields='__all__'
+
 class ThirdPartyRegistrationForm(forms.ModelForm):
     class Meta:
         model=ThirdParty

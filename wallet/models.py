@@ -1,5 +1,4 @@
 from datetime import datetime
-from distutils.command.upload import upload
 from random import choices
 from django.db import models
 class Customer(models.Model):
@@ -9,8 +8,8 @@ class Customer(models.Model):
     email= models.EmailField()
     phone_number=models.IntegerField()
     choice_g=(
-        ("M","Male"),
-        ("F","Female")
+        ("Male","Male"),
+        ("Female","Female")
     )
     gender= models.CharField(max_length=10,choices=choice_g)
     nationality=models.CharField(null=True,max_length=24)
@@ -34,23 +33,6 @@ class Walletb(models.Model):
     wallet_id=models.IntegerField(null=True)
 
 
-# class Currency(models.Model):
-#     my_currency=(
-#         ("Ugandan","U"),
-#         ("Rwanda","R"),
-#         ("Kenya","K"),
-#         ("Tanzania","T"),
-#         ("Somalia","S"),
-
-
-
-
-
-#     )
-#     country=models.CharField(max_length=8,choices=my_currency)
-#     symbol=models.CharField(max_length=9)
-#     # amount=models.
-
     
    
 
@@ -69,8 +51,8 @@ class Card(models.Model):
     card_number=models.IntegerField()
     expiry_date=models.DateTimeField(default=datetime.now)
     card_type_choices=(
-        ('D','debit'),
-        ('C','credit')
+        ('Debit','debit'),
+        ('credit','credit')
 
 
     )
@@ -92,8 +74,8 @@ class Notifcation(models.Model):
     title=models.CharField(max_length=900)
     date=models.DateTimeField(default=datetime.now)
     state=(
-        ('r','active'),
-        ('u','passive')
+        ('active','active'),
+        ('passive','passive')
     )
     status=models.CharField(max_length=7,choices=state,null=True)
     customer=models.ForeignKey(on_delete=models.CASCADE,to=Customer)

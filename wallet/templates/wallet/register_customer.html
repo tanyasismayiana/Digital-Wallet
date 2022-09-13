@@ -16,11 +16,11 @@
     <form method="POST">
         {%csrf_token%}
 
-        <div class="card" style="width: 40rem; height: 36rem;margin:4% 0% 0% 26%;background-color:#000000;">
+        <div class="card" style="width: 40rem; height: 40rem;margin:4% 0% 0% 26%;background-color:#000000;">
         
             <label for="firstname" style="width:29rem; margin:3% 0% 0% 13%;color: white;">Firstname
                 {{formi.first_name}}  
-                
+                <!-- <input type="text" placeholder="Enter first_name"> -->
             </label>
         <!-- <div class="col"> -->
 
@@ -44,6 +44,10 @@
         <!-- </label>  -->
          <label for="gender" style="width:29rem; margin:0% 0% 0% 13%;color: white;">Gender
             {{formi.gender}}  
+            
+        </label>
+        <label for="gender" style="width:29rem; margin:0% 0% 0% 13%;color: white;">Age
+            {{formi.age}}  
             
         </label>
     <!-- </label>   -->
