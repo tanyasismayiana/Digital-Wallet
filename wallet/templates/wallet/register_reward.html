@@ -15,7 +15,20 @@
    
     <form method="POST">
         {%csrf_token%}
-        {{reward.as_p}}
+        <label for="Customer" style="width:32rem; margin:5% 0% 0% 9%;color: black;">Date
+            {{reward.date}}
+        </label>
+        
+        <label for="Customer" style="width:32rem; margin:5% 0% 0% 9%;color: black;">Recepient
+            {{reward.recepient}}
+        </label>
+
+        <label for="Customer" style="width:32rem; margin:5% 0% 0% 9%;color: black;">Reward Points
+            {{reward.points}}
+        </label>
+       
+
+
      
     </form>
 </div>

@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,9 +9,32 @@
 
     <title>Document</title>
 </head>
-<body style="background-color:#57E294;">
-         <h1>All Customers</h1>
-     <table class="table table-hover table-dark" style="width:69rem;margin: 9% 0% 0% 10%;">
+<body style="background-color:#D1BCDB;">
+
+    <div class="Home">
+        <nav> 
+          <ul style="list-style-type: none; float:right; padding-right:95px;display:inline-flex;padding-left: 56px;margin-top: 20px;">
+            <!-- <li><a href="{url 'home_page'}" style="color: white; margin-right: -145px;text-align: right;">Home</a></li> -->
+            <li><a href="{% url 'all_customers'  %}"style="color:#F8BF87  ;padding-left:653px;margin-right: 45px;" >Customers</a></li>
+            <li><a href="{% url 'all_accounts' %}" style="margin-right: 45px;color: white;">Accounts</a></li>
+            <li><a href="{% url 'all_cards'%}" style="margin-right: 45px;color: white;">Cards</a></li>
+            <li><a href="{% url  'all_wallets'%}" style="color:white;text-decoration: none;margin-right: 45px;">Wallets</a></li>
+            <li><a href="{% url 'all_receipts' %}" style="color:white;text-decoration: none;margin-right: 45px;">Recepts</a></li>
+            <li><a href="{% url 'all_rewards' %}" style="color:white;text-decoration: none;margin-right: 45px;">Reward</a></li>
+            <li><a href="{% url 'all_loans'%}" style="color:white;text-decoration: none;margin-right: 45px;">Loans</a></li>
+            <li><a href="{% url 'all_thirdpartys' %}" style="color:white;text-decoration: none;margin-right: 45px;">Thirdpartys</a></li>
+            <li><a href="{% url 'all_transactions' %}" style="color:white;text-decoration: none;margin-right: 45px;">Transactions</a></li>
+            <form method="GET" action="{% url 'find_customer'%}">{%csrf_token%}<input class="form-control mr-sm-2" type="search" placeholder="Search Customer" aria-label="Search" name="customer_found" style="width:13rem ;">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="float:right;margin:0% -16% 0% 0%">Search</button>
+    </form>
+
+
+             
+          </ul>
+        </nav>
+         <h1 style="font-size: 26px;text-align: center;">All Customers</h1>
+
+     <table class="table table-hover table-dark" style="width:69rem;margin:6% 0% 0% 7%;">
         <td style="color: white;height: 10px;">First Name</td>
         <td style="color: white;height: 10px">Age</td>
         <td style="color: white;height: 10px">Email</td>
@@ -39,9 +61,10 @@
 
     {%endfor%}
      </table>  
-   
+       
 
 
+     <!-- action="{%url 'all_loans'%}" -->
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> 

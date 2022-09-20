@@ -12,13 +12,22 @@
     <title>Document</title>
 </head>
 <body>
-    {% block content %}
 
-    <form class="card"  style="width: 130rem;height: 450px;margin-top: 34rem;">
-        <input type="text" placeholder="Search.." name="search">
-        <button type="submit"><i class="fa fa-search"></i></button>
-      </form>
-      {% endblock %}
+  <h1>hi</h1>
+  {% block content %}
+
+  {% for resul in result%}
+       <h1>You searched for {{resul}} </h1>
+       <br>
+       {{resul.first_name}}
+       <br>
+       {{resul.last_name}}
+       
+       {%endfor%}
+       <br/>
+     <p>Hey,the custom
+        er is not found</p>
+     {% endblock %}
 
 </body>
 </html>

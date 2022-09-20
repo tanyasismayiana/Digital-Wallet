@@ -1,6 +1,9 @@
+from dataclasses import field
 from django.shortcuts import render
-from .forms import AccountRegistrationForm, CardRegistrationForm, CustomerRegisterationForm, LoanRegistrationForm, NotificationRegistrationForm, ReceiptRegistrationForm, RegisterTransactionForm, RewardRegistrationForm, ThirdPartyRegistrationForm, WalletRegistrationForm
+from .forms import AccountRegistrationForm, CardRegistrationForm, CustomerRegisterationForm, LoanRegistrationForm, NotificationRegistrationForm, ReceiptRegistrationForm, RegisterTransactionForm, RewardRegistrationForm, SearchingRegistrationForm, ThirdPartyRegistrationForm, WalletRegistrationForm
 from .models import Account, Card, Customer, Loan, Notifcation, Receipt, Reward, ThirdParty, Transaction, Walletb
+from django.views.generic.base import TemplateView
+
 
 # Create your views here
 
@@ -21,9 +24,27 @@ def list_customers(request):
     return render(request,'wallet/customer_list.html',{
         "Customers":customers
     })
-def searching(request):
-    customers = Customer.objects.filter(first_name=request.GET.get('search'))
-    return render(request, "wallet/search.html",{"people":customers})
+class search(TemplateView):
+    model = Customer #The model model you want to search
+    template_name = 'wallet/search.html'
+
+
+    def searching(request):
+        if request.method=="GET":
+            customer_found=request.GET.get('customer_found',None)
+            if customer_found:
+                result=Customer.objects.filter(first_name__contains=customer_found)
+                return result
+                # return render(request, "wallet/search.html",{"resulting":result})
+
+    
+            # customer_found=SearchingRegistrationForm()
+        return render(request, "wallet/search.html")
+
+    
+    
+
+
     
 
 def register_account(request):
@@ -82,7 +103,7 @@ def register_card(request):
 
 def list_card(request):
     card=Card.objects.all()
-    return render(request,"wallet/card_list.html",{"cards":card})
+    return render(request,"wallet/list_card.html",{"cards":card})
 
     
 

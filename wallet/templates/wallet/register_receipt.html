@@ -13,8 +13,24 @@
     <h1>Your Receipt</h1>
     <div class="card">
     <form method="POST">
+
         {%csrf_token%}
-        {{receipt.as_p}}
+        <label for="Customer" style="width:32rem; margin:5% 0% 0% 9%;color: black;">Date
+            {{receipt.receipt_date}}
+        </label>
+        
+        <label for="Customer" style="width:32rem; margin:5% 0% 0% 9%;color: black;">Receipt Number
+            {{receipt.receipt_number}}
+        </label>
+
+        <label for="Customer" style="width:32rem; margin:5% 0% 0% 9%;color: black;">Receipt File
+            {{receipt.receipt_file}}
+        </label>
+        <label for="Customer" style="width:32rem; margin:5% 0% 0% 9%;color: black;">Transaction
+            {{receipt.transaction}}
+        </label>
+      
+
         <button type="submit" class="save btn btn-default">Save</button>
 
     </form>

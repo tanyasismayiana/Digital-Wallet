@@ -8,7 +8,30 @@
 
     <title>Document</title>
 </head>
-<body>
+<body style="background-color:rgb(180, 112, 112) ;">
+    <div class="Home">
+        <nav> 
+          <ul style="list-style-type: none; float:right; padding-right:95px;display:inline-flex;padding-left: 56px;margin-top: 20px;">
+            <!-- <li><a href="{url 'home_page'}" style="color: white; margin-right: -145px;text-align: right;">Home</a></li> -->
+            <li><a href="{% url 'all_customers'  %}"style="color:white ;padding-left:653px;margin-right: 45px;" >Customers</a></li>
+            <li><a href="{% url 'all_accounts' %}" style="margin-right: 45px;color:white ;">Accounts</a></li>
+            <li><a href="{% url 'all_cards'%}" style="margin-right: 45px;color: white ;">Cards</a></li>
+            <li><a href="{% url  'all_wallets'%}" style="color:white;text-decoration: none;margin-right: 45px;">Wallets</a></li>
+            <li><a href="{% url 'all_receipts' %}" style="color:white;text-decoration: none;margin-right: 45px;">Recepts</a></li>
+            <li><a href="{% url 'all_rewards' %}" style="color:white;text-decoration: none;margin-right: 45px;">Reward</a></li>
+            <li><a href="{% url 'all_loans'%}" style="color:white;text-decoration: none;margin-right: 45px;">Loans</a></li>
+            <li><a href="{% url 'all_thirdpartys' %}" style="color:white;text-decoration: none;margin-right: 45px;">Thirdpartys</a></li>
+            <li><a href="{% url 'all_transactions' %}" style="color:white;text-decoration: none;margin-right: 45px;">Transactions</a></li>
+            <li><a href="{% url 'all_notifications' %}" style="color:#F8BF87 ;text-decoration: none;margin-right: 45px;">Notifications</a></li>
+
+           
+
+
+             
+          </ul>
+        </nav>
+        <h1 style="font-size: 26px;text-align: center;">All Loans</h1>
+
     <table class="table table-hover table-dark" style="width:69rem;margin: 9% 0% 0% 10%;">
 
         <td style="color: white;height: 10px">Date</td>
@@ -23,7 +46,7 @@
    <td   style="border: solid 1px black;width:10rem; height: 3rem;">{{loan.date}}</td>
    <td   style="border: solid 1px black;width:10rem ;height: 3rem;">{{loan.title}}</td>
    <td   style="border: solid 1px black;width:20rem; height: 3rem;">{{loan.message}}</td>
-   <td   style="border: solid 1px black;width:8rem; height: 3rem;">{{loan. status}}</td>
+   <td   style="border: solid 1px black;width:8rem; height: 3rem;">{{loan.status}}</td>
    <td   style="border: solid 1px black;width:10rem; height: 3rem;">{{loan.customer}}</td>
 
   {%endfor%}

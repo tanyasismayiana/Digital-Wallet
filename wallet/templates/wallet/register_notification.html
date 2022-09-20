@@ -13,7 +13,26 @@
     <div class="card">
     <form method="POST">
         {%csrf_token%}
-        {{notify.as_p}}
+        <label for="Customer" style="width:32rem; margin:5% 0% 0% 9%;color: black;">Date
+            {{notify.date}}
+        </label>
+        
+        <label for="Customer" style="width:32rem; margin:5% 0% 0% 9%;color: black;">Title
+            {{notify.title}}
+        </label>
+
+        <label for="Customer" style="width:32rem; margin:5% 0% 0% 9%;color: black;">Message
+            {{notify.message}}
+        </label>
+        <label for="Customer" style="width:32rem; margin:5% 0% 0% 9%;color: black;">Status
+            {{notify.status}}
+        </label>
+        <label for="Customer" style="width:32rem; margin:5% 0% 0% 9%;color: black;">Customer
+            {{notify.customer}}
+        </label>
+       
+
+
         <button type="submit" class="save btn btn-default">Save</button>
 
     </form>

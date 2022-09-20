@@ -1,10 +1,11 @@
 from unicodedata import name
 from django.urls import path 
-from .views import home_page, list_accounts, list_card, list_customers, list_loan, list_receipts, list_thirdparty, list_transaction, list_wallet, notification_list, register_account, register_card, register_customer, register_loan, register_notification, register_receipt, register_reward, register_thirdparty, register_transaction, register_wallet, searching
+from .views import home_page, list_accounts, list_card, list_customers, list_loan, list_receipts, list_reward, list_thirdparty, list_transaction, list_wallet, notification_list, register_account, register_card, register_customer, register_loan, register_notification, register_receipt, register_reward, register_thirdparty, register_transaction, register_wallet
+from .views import search
 urlpatterns=[
     path("",home_page,name='home'),
     path("customers/",list_customers,name='all_customers'),
-    path("customers_get/",searching,name='find customer'),
+    path("customers_get/",search.as_view(),name='find_customer'),
     path("registercust/",register_customer,name='registration'),
     path("register_account/",register_account,name='account'),
     path("accounts/",list_accounts,name='all_accounts'),
@@ -35,7 +36,7 @@ urlpatterns=[
     path('receipts/',list_receipts,name='all_receipts'),
 
     path('reward/',register_reward,name='reward'),
-        path('reward/',register_reward,name='reward'),
+        path('rewards/',list_reward,name='all_rewards'),
 
 
     

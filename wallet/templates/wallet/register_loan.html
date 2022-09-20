@@ -13,7 +13,30 @@
     <div class="card" style="width: 18rem;">
     <form method="POST">
         {%csrf_token%}
-        {{loan.as_p}}
+
+        <label for="Customer" style="width:32rem; margin:5% 0% 0% 9%;color: black;">Amount
+            {{loan.amount}}
+        </label>
+        
+        <label for="Customer" style="width:32rem; margin:5% 0% 0% 9%;color: black;">Type Loan
+            {{loan.type}}
+        </label>
+
+        <label for="Customer" style="width:32rem; margin:5% 0% 0% 9%;color: black;">Interest Rate
+            {{loan.interest_rate}}
+        </label>
+        <label for="Customer" style="width:32rem; margin:5% 0% 0% 9%;color: black;">Date
+            {{loan.date}}
+        </label>
+        <label for="Customer" style="width:32rem; margin:5% 0% 0% 9%;color: black;">Loan Id
+            {{loan.loan_Id}}
+        </label>
+        <label for="Customer" style="width:32rem; margin:5% 0% 0% 9%;color: black;">Wallet
+            {{loan.walletb}}
+        </label>
+
+
+
         <button type="submit" class="save btn btn-default">Save</button>
 
     </form>
