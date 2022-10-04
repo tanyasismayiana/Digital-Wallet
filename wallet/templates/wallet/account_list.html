@@ -28,7 +28,7 @@
              
           </ul>
         </nav>
-        <h1 style="font-size: 26px;text-align: center;margin: 4% 0% 0% 0%;">All Accounts</h1>
+        <h1 style="font-size: 26px;text-align: center;margin: 8% 0% 0% 0%;">All Accounts</h1>
 
     <table class="table table-hover table-dark" style="width:69rem;margin: 15% 0% 0% 7%;">
         <td style="color: white;height: 10px;">Customer</td>
@@ -39,7 +39,7 @@
        
     </th>
 
-   <tr>{% for account in Account%}</tr>
+   <tr>{% for account in accounts%}</tr>
    <!-- <td >{{forloop.customer}}</td> -->
    <td   style="border: solid 1px black;width:20rem; height: 3rem;">{{account.customer}}</td>
    <td   style="border: solid 1px black;width:10rem ;height: 3rem;">{{account.account_number}}</td>

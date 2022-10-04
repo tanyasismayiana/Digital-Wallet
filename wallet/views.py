@@ -1,14 +1,14 @@
-from dataclasses import field
 from django.shortcuts import render
-from .forms import AccountRegistrationForm, CardRegistrationForm, CustomerRegisterationForm, LoanRegistrationForm, NotificationRegistrationForm, ReceiptRegistrationForm, RegisterTransactionForm, RewardRegistrationForm, SearchingRegistrationForm, ThirdPartyRegistrationForm, WalletRegistrationForm
+from .forms import AccountRegistrationForm, CardRegistrationForm, CustomerRegisterationForm, LoanRegistrationForm, NotificationRegistrationForm, ReceiptRegistrationForm, RegisterTransactionForm, RewardRegistrationForm,ThirdPartyRegistrationForm, WalletRegistrationForm
 from .models import Account, Card, Customer, Loan, Notifcation, Receipt, Reward, ThirdParty, Transaction, Walletb
-from django.views.generic.base import TemplateView
-
+from django.shortcuts import redirect
+from django.views.generic.base import View
 
 # Create your views here
 
 def home_page(request):
     return render(request,"wallet/index.html")
+
 def register_customer(request):
     if request.method=='POST':
         form=CustomerRegisterationForm(request.POST)
@@ -19,33 +19,39 @@ def register_customer(request):
     return render(request,"wallet/register_customer.html",
         {"formi":form
     })
-def list_customers(request):
-    customers=Customer.objects.all()
-    return render(request,'wallet/customer_list.html',{
-        "Customers":customers
-    })
-class search(TemplateView):
-    model = Customer #The model model you want to search
-    template_name = 'wallet/search.html'
+
+def customer_profile(request,id):
+   customers=Customer.objects.get(id=id)
+   return render(request,"wallet/customer_profile.html",{"customers":customers })
+def edit_customer(request,id):
+   customer=Customer.objects.get(id=id)
+   if request.method =='POST':
+       form=CustomerRegisterationForm(request.POST,instance=customer)
+       if form.is_valid():
+           form.save()
+           return redirect("customerProfile",id=customer.id)
+   else:
+       form=CustomerRegisterationForm(instance=customer)
+   return render(request,"wallet/edit_customer.html",{"forms":form})
 
 
-    def searching(request):
-        if request.method=="GET":
-            customer_found=request.GET.get('customer_found',None)
-            if customer_found:
-                result=Customer.objects.filter(first_name__contains=customer_found)
-                return result
-                # return render(request, "wallet/search.html",{"resulting":result})
 
+
+class SearchCustomer(View):
+    model = Customer
+    template_name = 'wallet/customer_list.html'
+
+    def get(self,request):
+        customers=Customer.objects.all()
+        customer_found=request.GET.get('customer_found',None)     #request takes form as customer_found 
+        if customer_found:
+            result=Customer.objects.filter(first_name__contains=customer_found)    #filter from database and assign it tothe request 
+            context={'Customers':result}
+            return render(request, self.template_name,context)   #return result
+        context={'Customers':customers}
+        return render(request, self.template_name,context)                                  
     
-            # customer_found=SearchingRegistrationForm()
-        return render(request, "wallet/search.html")
 
-    
-    
-
-
-    
 
 def register_account(request):
     if request.method=="POST":
@@ -56,11 +62,27 @@ def register_account(request):
         form_account=AccountRegistrationForm()
     return render(request,'wallet/register_account.html',{"form":form_account} )
 
+
+
 def list_accounts(request):
     accounts=Account.objects.all()
     return render(request,'wallet/account_list.html',{
-        "Account":accounts})
+        "accounts":accounts})
 
+def account_profile(request,id):
+    account=Account.objects.get(id=id)
+    return render(request,"wallet/account_profile.html",{"accounts":account})
+def edit_account(request,id):
+    account=Account.objects.get(id=id)
+    if request.method == "POST":
+        form=AccountRegistrationForm(request.POST,instance=account)
+        if form.is_valid():
+            form.save()
+            return redirect("accountProfile",id=account.id)
+
+    else:
+        form=AccountRegistrationForm(instance=account)
+    return render(request,"wallet/edit_account.html",{"forms":form})
 
 def register_wallet(request):
     if request.method=="POST":
@@ -70,6 +92,20 @@ def register_wallet(request):
     else:
         form_wallet=WalletRegistrationForm()
     return render(request,"wallet/register_wallet.html", {"wallet":form_wallet} )
+
+def wallet_profile(request,id):
+    wallet=Walletb.objects.get(id=id)
+    return render(request,"wallet/account_profile.html",{"wallets":wallet})
+def edit_wallet(request,id):
+    wallet=Walletb.objects.get(id=id)
+    if request.method=="POST":
+        form=WalletRegistrationForm(request.POST,instance=wallet)
+        if form.is_valid():
+            form.save()
+            return redirect("walletProfile",id=wallet.id)
+    else:
+        form=WalletRegistrationForm(instance=wallet)
+        return render(request,"wallet/edit_wallet.html",{"forms":form})
 
 
 def list_wallet(request):
@@ -85,12 +121,12 @@ def register_transaction(request):
     else:
         form_transact=RegisterTransactionForm()
     return render(request,"wallet/register_transaction.html", {"transact":form_transact})
+
 def list_transaction(request):
     transactions=Transaction.objects.all()
-    return render(request,"wallet/transaction_list.html",{"transaction":transactions})
+    return render(request,"wallet/transaction_list.html",{"transactions":transactions})
 
 
-        
 def register_card(request):
     card_form=CardRegistrationForm()
     if request.method=="POST":
@@ -100,10 +136,40 @@ def register_card(request):
     else:
         card_form=CardRegistrationForm()
     return render(request,"wallet/card_register.html",{"card":card_form})
+def transaction_profile(request,id):
+    transaction=Transaction.objects.get(id=id)
+    return render(request,"wallet/transaction_profile.html",{"transactions":transaction})
+def edit_transaction(request,id):
+    transaction=Transaction.objects.get(id=id)
+    if request.method=="POST":
+        form=RegisterTransactionForm(request.POST,instance=transaction)
+        if form.is_valid():
+            form.save()
+            return redirect("transactionProfile",id=transaction.id)
+    else:
+        form=RegisterTransactionForm(instance=transaction)
+        return render(request,"wallet/edit_transaction.html",{"forms":form})
+             
+
+
 
 def list_card(request):
     card=Card.objects.all()
     return render(request,"wallet/list_card.html",{"cards":card})
+def card_profile(request,id):
+    card=Card.objects.get(id=id)
+    return render(request,"wallet/card_profile.html",{"cards":card})
+
+def edit_card(request,id):
+    card=Card.objects.get(id=id)
+    if request.method=="POST":
+        form=CardRegistrationForm(request.POST,instance=card)
+        if form.is_valid():
+            form.save()
+            return redirect("cardProfile",id=card.id)
+    else:
+        return render(request,"wallet/edit_card.html",{"forms":form})
+
 
     
 
@@ -177,5 +243,42 @@ def register_receipt(request):
 def list_receipts(request):
     receipt=Receipt.objects.all()
     return render(request,"wallet/receipt_list.html",{"receipts":receipt})
+
+def receipt_profile(request,id):
+     receipt=Receipt.objects.get(id=id)
+     return render(request,"wallet/receipt_profile.html",{"receipts":receipt})
+
+def edit_receipts(request,id):
+     receipt=Receipt.objects.get(id=id)
+     if request.method=="POST":
+        form=ReceiptRegistrationForm(request.POST,instance=receipt)
+        if form.is_valid():
+            form.save()
+            return redirect("receiptProfile",id=receipt.id)
+     else:
+        form=ReceiptRegistrationForm(instance=receipt)
+        return render(request,"wallet/edit_receipt.html",{"forms":form})
+
+
+# class CustomerProfile(View):
+#     model = Customer
+#     template_name = 'wallet/customer_profile.html'
+
+#     def get(self,request,id):
+#         customers=Customer.objects.get(id=id)
+#         customer_found=request.GET.get('customer_found',None)     #request takes form as customer_found 
+#         if customer_found:
+#             form=CustomerRegisterationForm(request.POST,instance=customers)    #filter from database and assign it tothe request 
+#             context={'Customers':form}
+#             if form.is_valid():
+#                 form.save()
+
+#                 return redirect("customerProfile",id=customers.id)#return result
+#         context={'Customers':customers}
+#         return render(request, self.template_name,context)      
+
+                           
+    
+
 
 

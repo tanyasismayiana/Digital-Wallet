@@ -9,7 +9,7 @@
 
     <title>Document</title>
 </head>
-<body style="background-color:#D1BCDB;">
+<body style="background-color:rgb(180, 112, 112) ;">
 
     <div class="Home">
         <nav> 
@@ -24,7 +24,7 @@
             <li><a href="{% url 'all_loans'%}" style="color:white;text-decoration: none;margin-right: 45px;">Loans</a></li>
             <li><a href="{% url 'all_thirdpartys' %}" style="color:white;text-decoration: none;margin-right: 45px;">Thirdpartys</a></li>
             <li><a href="{% url 'all_transactions' %}" style="color:white;text-decoration: none;margin-right: 45px;">Transactions</a></li>
-            <form method="GET" action="{% url 'find_customer'%}">{%csrf_token%}<input class="form-control mr-sm-2" type="search" placeholder="Search Customer" aria-label="Search" name="customer_found" style="width:13rem ;">
+            <form  action="{% url 'all_customers'%}">{%csrf_token%}<input class="form-control mr-sm-2" type="search" placeholder="Search Customer" aria-label="Search" name="customer_found" style="width:13rem ;">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="float:right;margin:0% -16% 0% 0%">Search</button>
     </form>
 
@@ -53,6 +53,9 @@
    <td   style="border: solid 1px black;width:10rem; height: 3rem;">{{customer.gender}}</td>
    <td   style="border: solid 1px black;width:14rem; height: 3rem;">{{customer.phone_number}}</td>
    <td   style="border: solid 1px black;width:10rem; height: 3rem;">{{customer.nationality}}</td>
+   <td   style="border: solid 1px black;width:10rem; height: 3rem;"><img src="{{customer.image.url}}"></td>
+   <td><a href="{% url 'edit_customer' customer.id%}">Edit</a></td>
+   
 
 
 

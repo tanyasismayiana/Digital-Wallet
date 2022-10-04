@@ -24,17 +24,14 @@
             <li><a href="{% url 'all_thirdpartys' %}" style="color:white;text-decoration: none;margin-right: 45px;">Thirdpartys</a></li>
             <li><a href="{% url 'all_transactions' %}" style="color:white;text-decoration: none;margin-right: 45px;">Transactions</a></li>
             <li><a href="{% url 'all_notifications' %}" style="color:white;text-decoration: none;margin-right: 45px;">Notifications</a></li>
-            <form method="post"  action="{%url 'find_customer'%}">{%csrf_token%}<input class="form-control mr-sm-2" type="search" placeholder="Search Customer" aria-label="Search" name="customer_found" style="width:13rem ;">
-              <button class="btn btn-outline-success my-2 my-sm-0" type="submit" style="float:right;margin:0% -16% 0% 0%">Search</button>
-          </form>
-           
+            
 
 
              
           </ul>
         </nav>
         
-    <h1>All Rewards </h1>
+    <h1  style="font-size: 26px;text-align: center;margin: 8% 0% 0% 0%;">All Rewards </h1>
     <table class="table table-hover table-dark" style="width:69rem;margin: 9% 0% 0% 10%;">
         <td style="color: white;height: 10px">Date</td>
         <td style="color: white;height: 10px;">Recepient</td>
