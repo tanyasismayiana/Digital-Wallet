@@ -12,12 +12,6 @@ from .models import Loan
 from .models import Reward
 
 
-
-
-
-
-
-
 class CustomerAdmin(admin.ModelAdmin):
      list_display=('first_name','last_name','age','email')
      search_fields=('first_name','last_name')
