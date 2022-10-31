@@ -9,5 +9,16 @@
 <body>
     <h1>Welcome to your Digital Wallet</h1>
     <img src="/wallet/static/images/wallet_mine.webp">
+    <!-- <button class="btn-success" onclick="location.href='{% url 'customers_get/' %}'" > Get started</button> -->
+
+    <form action="{% url 'all_customers' %}" method="post">
+        {% csrf_token %}
+        
+        
+         <button type="submit" name='mybtn2' value={{customers_get_path}}>Get started</button>
+         </form>
+
+
+
 </body>
 </html>
