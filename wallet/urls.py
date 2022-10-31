@@ -3,12 +3,13 @@ from .views import SearchCustomer, account_profile, card_profile, edit_account,c
 
 urlpatterns=[
     # path("",home_page,name='home'),
-    path("customers/",list_customers,name='all_customers'),
+    # path("customers/",list_customers,name='all_customers'),
     path("",SearchCustomer.as_view(),name='all_customers'),
     path("customers/<int:id>/",customer_profile,name="customerProfile"),
     path("customers/edit/<int:id>/",edit_customer,name="edit_customer"),
     # path('customers/<int:id>/',CustomerProfile.as_view(),name="edit_customer"),
     path("registercust/",register_customer,name='registration'),
+
 
 
     path("register_account/",register_account,name='account'),

@@ -16,13 +16,13 @@ def register_customer(request):
             form.save()
     else:
         form=CustomerRegisterationForm()
-    return render(request,"wallet/register_customer.html",
+    return render(request,"/register_customer.html",
         {"formi":form
     })
 
 def customer_profile(request,id):
    customers=Customer.objects.get(id=id)
-   return render(request,"wallet/customer_profile.html",{"customers":customers })
+   return render(request,"/customer_profile.html",{"customers":customers })
 def edit_customer(request,id):
    customer=Customer.objects.get(id=id)
    if request.method =='POST':
@@ -32,7 +32,7 @@ def edit_customer(request,id):
            return redirect("customerProfile",id=customer.id)
    else:
        form=CustomerRegisterationForm(instance=customer)
-   return render(request,"wallet/edit_customer.html",{"forms":form})
+   return render(request,"/edit_customer.html",{"forms":form})
 
 
 
